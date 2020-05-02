@@ -22,7 +22,7 @@ const e1 =store.dispatch(addExpense({amt:500,description:"coffee",createdAt:1000
 const e2 = store.dispatch(addExpense({amt:590,description:"grocery",createdAt:100}))
 const e3 = store.dispatch(addExpense({amt:570,description:"rent",createdAt:2000}))
 //store.dispatch(removeExpense({id:e2.id}))
-console.log("hiiiii")
+console.log("hiiiiisuji4")
 store.dispatch(editExpense(e3.id,{amt:340}))
 //store.dispatch(setText({text:"grocery"}))
 //store.dispatch(setStartDate({startDate:1000}))
