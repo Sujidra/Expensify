@@ -7,7 +7,7 @@ module.exports =(env)=>{
         filename:'styles.css'});
     return {entry:['./src/index.js'],
     output:{
-        path:path.resolve(__dirname,"public"),
+        path:path.resolve(__dirname,"public","dist"),
         filename:"bundle.js"
     },
     module:{
@@ -35,7 +35,8 @@ module.exports =(env)=>{
     ],
     devServer: {
         contentBase: path.resolve(__dirname,"public"),
-        historyApiFallback:true
+        historyApiFallback:true,
+        publicPath:"/dist/"
     },
     
     devtool: isProduction ?"source-map":"inline-source-map"
