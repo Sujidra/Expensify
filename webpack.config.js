@@ -1,7 +1,11 @@
 const path= require("path")
+const MiniCssExtractPlugin=require("mini-css-extract-plugin")
 
-module.exports ={
-    entry:['./src/index.js'],
+module.exports =(env)=>{
+    const isProduction =env ==='production';
+    const MiniCssExtract = new MiniCssExtractPlugin({
+        filename:'styles.css'});
+    return {entry:['./src/index.js'],
     output:{
         path:path.resolve(__dirname,"public"),
         filename:"bundle.js"
@@ -15,18 +19,26 @@ module.exports ={
             }
         },{
             test:/\.s?css$/,
+        
             use:[
-                "style-loader",
+                MiniCssExtractPlugin.loader,
                 "css-loader",
                 "sass-loader"
-            ]
+            ],
+            
+                
+            
         }]
     },
+    plugins:[
+        MiniCssExtract
+    ],
     devServer: {
         contentBase: path.resolve(__dirname,"public"),
         historyApiFallback:true
     },
     
-    devtool: "cheap-module-eval-source-map"
+    devtool: isProduction ?"source-map":"inline-source-map"
    
+}
 }
