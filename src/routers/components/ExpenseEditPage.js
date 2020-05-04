@@ -1,17 +1,17 @@
 import React from "react";
 import ExpenseForm from "./ExpenseForm";
 import {connect} from "react-redux"
-import {addExpense,removeExpense,editExpense} from "./store/Actions/expenseAction";
+import {starteditExpense,startremoveExpense,editExpense} from "./store/Actions/expenseAction";
 
 const ExpenseEditPage = (props) =>{
-    console.log(props);
+    
 return(
     
     <div>
         <p>this edit page.the id id:{props.match.params.id}</p>
-        <ExpenseForm expense={props.expense} onSubmit={(expense)=>{props.dispatch(addExpense(expense))
+        <ExpenseForm expense={props.expense} onSubmit={(expense)=>{props.dispatch(starteditExpense(props.expense.id,expense))
         props.history.push("/")}}/>
-        <button  onClick={(e)=>{props.dispatch(removeExpense({id:props.expense.id}));
+        <button  onClick={(e)=>{props.dispatch(startremoveExpense({id:props.expense.id}));
         props.history.push("/")}}>Remove</button>
     </div>
     )

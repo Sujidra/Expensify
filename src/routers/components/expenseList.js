@@ -3,8 +3,10 @@ import {connect} from "react-redux"
 import { ReactReduxContext } from "react-redux";
 import  ExpenseDisplay from "./ExpenseDisplay"
 import {getVisibleExpence} from "./store/selectors/visibleExpense.js"
+import {getTotalExpense} from "./store/selectors/getTotalExpense.js"
 import {setText,setStartDate,setEndDate,setSortBy} from "./store/Actions/filterActions"
 import {DateRangePicker } from "react-dates"
+import numeral from "numeral";
 
 class ExpenseList extends React.Component{
 state={
@@ -20,6 +22,7 @@ onfocusChange=(focusedInput)=>{
     
     render(){
         let visibility =getVisibleExpence(this.props.expenses,this.props.filter)
+        let totalexpense=getTotalExpense(visibility);
         return(
             <div>
                 <div>
@@ -32,6 +35,7 @@ onfocusChange=(focusedInput)=>{
                     onDatesChange={this.onDatechange}
                     focusedInput={this.state.calenderFocused}
                     onFocusChange={this.onfocusChange}
+                    showClearDates={true}
                     numberOfMonths={1}
                     isOutsideRange={()=>false}
                     />
@@ -43,6 +47,7 @@ onfocusChange=(focusedInput)=>{
                     </select>
                 </div>
                 <h1>Expense List</h1>
+                <p>There are {visibility.length} expense and total sum of expense is Rs.{numeral(totalexpense/100).format('0.00')} </p>
                 <div>{visibility.map((expense)=>{
                     return <ExpenseDisplay key={expense.id}{...expense} />})}</div>
             </div>
