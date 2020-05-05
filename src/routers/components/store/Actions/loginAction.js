@@ -1,7 +1,7 @@
 import firebase,{googleAuthProvider} from "../../../../firebase/firebas"
 export const startLogin=()=>{
     return () =>{
-        return firebase.auth().signInWithPopup(googleAuthProvider)
+        return firebase.auth().signInWithRedirect(googleAuthProvider)
     }
 }
 

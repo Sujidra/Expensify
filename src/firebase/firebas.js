@@ -13,6 +13,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 const googleAuthProvider= new firebase.auth.GoogleAuthProvider();
+firebase.auth.Auth.Persistence.NONE;
 /*firebase.database().ref().set({
     name:"suji",
     age:10,
