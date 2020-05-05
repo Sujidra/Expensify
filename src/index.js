@@ -8,7 +8,7 @@ import "./styles/styles.scss";
 import {addExpense,removeExpense,editExpense} from "./routers/components/store/Actions/expenseAction";
 import {setText,setStartDate,setEndDate,setSortBy} from "./routers/components/store/Actions/filterActions"
 import {startSetExpense} from "./routers/components/store/Actions/expenseAction"
-
+import firebase,{googleAuthProvider} from "./firebase/firebas"
 import storeConfig from "./routers/components/store/store_config";
 import {getVisibleExpence} from "./routers/components/store/selectors/visibleExpense"
 import "./firebase/firebas"
@@ -43,4 +43,11 @@ store.dispatch(startSetExpense()).then(()=>{
     ReactDOM.render(jsx,document.getElementById("app"))
 }).catch((e)=>{
     console.log(e)
+})
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        console.log("Logged in");
+    }else{
+        console.log("log out");
+    }
 })

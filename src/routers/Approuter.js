@@ -6,6 +6,7 @@ import AddExpensePage from "./components/AddExpensePage"
 import ExpenseEditPage from "./components/ExpenseEditPage"
 import HelpPage from "./components/HelpPage"
 import Error from "./components/Error"
+import LoginPage from "./components/login"
 
 const Routes= () =>{
 return (
@@ -14,11 +15,9 @@ return (
             <Header />
         
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact={true}/>
+                <Route path="/" component={LoginPage} exact={true}/>
+                <Route path="/dashboard" component={ExpenseDashboardPage} exact={true}/>
                 <Route path="/create" component={AddExpensePage} />
-                <Route path="/edit/:id" component={ExpenseEditPage} />
-                <Route path="/help" component={HelpPage} />
-
                 <Route component={Error} />
             </Switch>
         </div>

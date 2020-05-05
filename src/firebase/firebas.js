@@ -12,6 +12,7 @@ const firebaseConfig = {
   };
 
 firebase.initializeApp(firebaseConfig)
+const googleAuthProvider= new firebase.auth.GoogleAuthProvider();
 /*firebase.database().ref().set({
     name:"suji",
     age:10,
@@ -20,4 +21,4 @@ firebase.initializeApp(firebaseConfig)
         marks:81
     }
 })*/
-export {firebase as default};
+export { googleAuthProvider, firebase as default};
