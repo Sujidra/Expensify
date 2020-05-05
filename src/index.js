@@ -1,7 +1,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "./routers/Approuter"
+import Routes,{history} from "./routers/Approuter"
 import {Provider} from "react-redux";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
@@ -11,7 +11,9 @@ import {startSetExpense} from "./routers/components/store/Actions/expenseAction"
 import firebase,{googleAuthProvider} from "./firebase/firebas"
 import storeConfig from "./routers/components/store/store_config";
 import {getVisibleExpence} from "./routers/components/store/selectors/visibleExpense"
-import "./firebase/firebas"
+import "./firebase/firebas";
+import {startLogin,startLogout} from "./routers/components/store/Actions/loginAction"
+
 
 const store=storeConfig();
 
@@ -31,6 +33,16 @@ console.log("hiiiiisuji4")
 //store.dispatch(setStartDate({startDate:1000}))
 //store.dispatch(setSortBy({sortBy:"Date"}))
 //console.log(store.getState())
+
+let hasRendered =false;
+const render = () =>{
+    if(!hasRendered){
+        ReactDOM.render(jsx,document.getElementById("app"));
+        hasRendered=true;
+    }
+}
+
+
 const jsx=(
     <Provider store={store}>
         <Routes />
@@ -39,15 +51,20 @@ const jsx=(
 
 ReactDOM.render(<p>Loading</p>,document.getElementById("app"))
 
-store.dispatch(startSetExpense()).then(()=>{
-    ReactDOM.render(jsx,document.getElementById("app"))
-}).catch((e)=>{
-    console.log(e)
-})
+
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
-        console.log("Logged in");
+        store.dispatch(startLogin(user.uid));
+        store.dispatch(startSetExpense()).then(()=>{
+            render();
+        })
+        if(history.location.pathname==="/"){
+            history.push("/dashboard");
+        }
+        console.log(user.uid);
     }else{
-        console.log("log out");
+        store.dispatch(startLogout());
+        render();
+        history.push("/");
     }
 })
