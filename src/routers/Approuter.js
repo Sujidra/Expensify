@@ -9,6 +9,7 @@ import HelpPage from "./components/HelpPage"
 import Error from "./components/Error"
 import LoginPage from "./components/login";
 import PrivateRoute from "./PrivateRoute"
+import PublicRoute from "./PublicRoute"
 
 export const history=createHistory();
 
@@ -18,9 +19,10 @@ return (
         <div>
                     
             <Switch>
-                <Route path="/" component={LoginPage} exact={true}/>
+                <PublicRoute path="/" component={LoginPage} exact={true}/>
                 <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} exact={true}/>
                 <PrivateRoute path="/create" component={AddExpensePage} />
+                <PrivateRoute path="/edit/:id" component={ExpenseEditPage} />
                 <PrivateRoute component={Error} />
             </Switch>
         </div>

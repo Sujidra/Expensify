@@ -20,19 +20,10 @@ const store=storeConfig();
 store.subscribe(()=>{
     let storeobj=store.getState();
     let visibility =getVisibleExpence(storeobj.expense,storeobj.filters)
-    console.log(visibility);
+    
 })
 
-/*const e1 =store.dispatch(addExpense({amt:500,description:"coffee",createdAt:1000}))
-const e2 = store.dispatch(addExpense({amt:590,description:"grocery",createdAt:100}))
-const e3 = store.dispatch(addExpense({amt:570,description:"rent",createdAt:2000}))*/
-//store.dispatch(removeExpense({id:e2.id}))
-console.log("hiiiiisuji4")
-//store.dispatch(editExpense(e3.id,{amt:340}))
-//store.dispatch(setText({text:"grocery"}))
-//store.dispatch(setStartDate({startDate:1000}))
-//store.dispatch(setSortBy({sortBy:"Date"}))
-//console.log(store.getState())
+
 
 let hasRendered =false;
 const render = () =>{
@@ -61,7 +52,7 @@ firebase.auth().onAuthStateChanged((user)=>{
         if(history.location.pathname==="/"){
             history.push("/dashboard");
         }
-        console.log(user.uid);
+        
     }else{
         store.dispatch(startLogout());
         render();
