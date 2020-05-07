@@ -5,7 +5,7 @@ module.exports =(env)=>{
     const isProduction =env ==='production';
     const MiniCssExtract = new MiniCssExtractPlugin({
         filename:'styles.css'});
-    return {entry:['./src/index.js'],
+    return {entry:["babel-polyfill",'./src/index.js'],
     output:{
         path:path.resolve(__dirname,"public","dist"),
         filename:"bundle.js"

@@ -13,6 +13,7 @@ import storeConfig from "./routers/components/store/store_config";
 import {getVisibleExpence} from "./routers/components/store/selectors/visibleExpense"
 import "./firebase/firebas";
 import {startLogin,startLogout} from "./routers/components/store/Actions/loginAction"
+import Loading from "./routers/components/Loading"
 
 
 const store=storeConfig();
@@ -40,7 +41,7 @@ const jsx=(
     </Provider>
 )
 
-ReactDOM.render(<p>Loading</p>,document.getElementById("app"))
+ReactDOM.render(<Loading />,document.getElementById("app"))
 
 
 firebase.auth().onAuthStateChanged((user)=>{
