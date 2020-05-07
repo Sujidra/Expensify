@@ -1,0 +1,39 @@
+.bg{
+    background-image: url("/images/bg.jpg");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 250px;
+    height: 200px;
+    margin-top:35;
+    background:fade-out(white,.15);
+    text-align: center;
+    
+}
+
+.title{
+    font-weight: 1000;
+    margin-bottom: 0px;
+}
+
+.content{
+    margin-top:15px;
+    font-size: 25px;
+    font-style: italic;
+}
+.button{
+    width: 150px;
+    height: 35px;
+    background: rgb(73, 142, 245);
+    color:white;
+    border: none;
+    cursor: pointer;
+}
+

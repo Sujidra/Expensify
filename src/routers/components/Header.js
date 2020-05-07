@@ -4,11 +4,9 @@ import {logout} from "./store/Actions/loginAction"
 import {connect} from "react-redux"
 
 const Header = (props) =>(
-    <div>
-        <h1>Expensify</h1>
-        <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
-        <NavLink to="/create" activeClassName="is-active">Create Page</NavLink>
-        <button onClick={props.dispatch(logout)}>Logout</button>
+    <div className="header">
+        <NavLink class="headtitle" to="/dashboard" activeClassName="is-active">Expensify</NavLink>
+        <button className="logout" onClick={props.dispatch(logout)}>Logout</button>
     </div>
     
 );

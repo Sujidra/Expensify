@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux"
 import { ReactReduxContext } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import  ExpenseDisplay from "./ExpenseDisplay"
 import {getVisibleExpence} from "./store/selectors/visibleExpense.js"
 import {getTotalExpense} from "./store/selectors/getTotalExpense.js"
@@ -25,31 +26,42 @@ onfocusChange=(focusedInput)=>{
         let totalexpense=getTotalExpense(visibility);
         return(
             <div>
-                <div>
-                    <input type="text" value={this.props.filter.text} onChange={(e)=>{
-                        this.props.dispatch(setText({text:e.target.value}))}}>
-                    </input>
-                    <DateRangePicker 
-                    startDate={this.props.filter.startDate}
-                    endDate={this.props.filter.endDate}
-                    onDatesChange={this.onDatechange}
-                    focusedInput={this.state.calenderFocused}
-                    onFocusChange={this.onfocusChange}
-                    showClearDates={true}
-                    numberOfMonths={1}
-                    isOutsideRange={()=>false}
-                    />
-                        
-                    <select value={this.props.filter.sortBy} onChange={(e)=>{
-                    this.props.dispatch(setSortBy({sortBy:e.target.value}))}}>
-                    <option value="Date">Date</option>     
-                    <option value="Amount">Amount</option>       
-                    </select>
+                <div className="subhead">
+                    <h2>Viewing {visibility.length} expenses and its total is Rs.{numeral(totalexpense/100).format('0.00')} </h2>
+                    <NavLink className="expensebutton" to="/create" activeClassName="is-active">Add Expense</NavLink>
+        
+                </div>
+                <div className="expensefilter_container">
+                    <div >
+                        <input className="searchbox" placeHolder="Seach text" type="text" value={this.props.filter.text} onChange={(e)=>{
+                            this.props.dispatch(setText({text:e.target.value}))}}>
+                        </input>
+                    </div>
+                    <div>
+                        <DateRangePicker 
+                        startDate={this.props.filter.startDate}
+                        endDate={this.props.filter.endDate}
+                        onDatesChange={this.onDatechange}
+                        focusedInput={this.state.calenderFocused}
+                        onFocusChange={this.onfocusChange}
+                        showClearDates={true}
+                        numberOfMonths={1}
+                        isOutsideRange={()=>false}
+                        />
+                    </div>
+                    <div>    
+                        <select className="sortbox" value={this.props.filter.sortBy} onChange={(e)=>{
+                        this.props.dispatch(setSortBy({sortBy:e.target.value}))}}>
+                        <option value="Date">Date</option>     
+                        <option value="Amount">Amount</option>       
+                        </select>
+                    </div>
+                    
                 </div>
                 <h1>Expense List</h1>
-                <p>There are {visibility.length} expense and total sum of expense is Rs.{numeral(totalexpense/100).format('0.00')} </p>
                 <div>{visibility.map((expense)=>{
-                    return <ExpenseDisplay key={expense.id}{...expense} />})}</div>
+                    return <ExpenseDisplay key={expense.id}{...expense} />})}
+                </div>
             </div>
     
         )

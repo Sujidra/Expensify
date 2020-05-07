@@ -4,7 +4,15 @@ import {login} from "./store/Actions/loginAction"
 
 const LoginPage =(props) =>{
     return(
-        <button onClick={props.dispatch(login)}>Login</button>
+        <div className="bg">
+            <div className="box">
+                <h1 className="title">Expensify</h1>
+                <p className="content">Its time to get your expenses under control</p>
+                <button className="button"onClick={props.dispatch(login)}>Login with Google</button>
+            </div>
+                
+        </div>
+        
     )
 }
 export default connect()(LoginPage);
