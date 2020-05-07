@@ -6,6 +6,11 @@
     margin-right: 15%;
     padding-bottom: 10px;
 }
+.summary{
+    font-size: 25px;
+    
+}
+
 .searchbox{
     height: 49;
     background-color: #fff;
@@ -14,10 +19,66 @@
     padding-left:10px;
     font-size: 20px;
     width: 200px;
-
+    
 }
 
 .sortbox{
     @extend .searchbox;
     width:100px;
+}
+.box{
+    margin-left:15%;
+    width: 70%;
+    margin-right: 15%;
+    
+}
+.listheading{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #cacccd ;
+    padding:0 20px;
+    background-color: fade-out(grey,0.90);
+    p{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.list{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #cacccd ;
+    padding:0 20px;
+}
+.listitem{
+    margin-top:10;
+    
+}
+   
+.amount{
+    padding-top:20px ;
+    font-weight: bold;
+}
+.itemtitle{
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+@media only screen and(max-width:600px){
+    .expensefilter_container{
+        flex-direction: column;
+
+    }
+    .searchbox{
+        margin-bottom: 10px;
+    }
+    .sortbox{
+        margin-bottom: 10px;
+    }
+    .datebox{
+        margin-bottom: 10px;
+    }
 }

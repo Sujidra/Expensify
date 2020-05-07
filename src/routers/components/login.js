@@ -5,7 +5,7 @@ import {login} from "./store/Actions/loginAction"
 const LoginPage =(props) =>{
     return(
         <div className="bg">
-            <div className="box">
+            <div className="loginbox">
                 <h1 className="title">Expensify</h1>
                 <p className="content">Its time to get your expenses under control</p>
                 <button className="button"onClick={props.dispatch(login)}>Login with Google</button>

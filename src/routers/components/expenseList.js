@@ -27,7 +27,7 @@ onfocusChange=(focusedInput)=>{
         return(
             <div>
                 <div className="subhead">
-                    <h2>Viewing {visibility.length} expenses and its total is Rs.{numeral(totalexpense/100).format('0.00')} </h2>
+                <p className="summary">Viewing <b>{visibility.length}</b> {visibility.length > 1 ? <span>expenses</span>:<span>expense</span>} and its total is Rs.<b>{numeral(totalexpense/100).format('0.00')}</b> </p>
                     <NavLink className="expensebutton" to="/create" activeClassName="is-active">Add Expense</NavLink>
         
                 </div>
@@ -37,7 +37,7 @@ onfocusChange=(focusedInput)=>{
                             this.props.dispatch(setText({text:e.target.value}))}}>
                         </input>
                     </div>
-                    <div>
+                    <div className="datebox">
                         <DateRangePicker 
                         startDate={this.props.filter.startDate}
                         endDate={this.props.filter.endDate}
@@ -58,10 +58,16 @@ onfocusChange=(focusedInput)=>{
                     </div>
                     
                 </div>
-                <h1>Expense List</h1>
-                <div>{visibility.map((expense)=>{
-                    return <ExpenseDisplay key={expense.id}{...expense} />})}
+                <div className="box">
+                    <div className="listheading">
+                        <p>Expense </p>
+                        <p>Amount</p>
+                    </div>
+                    <div>{visibility.map((expense)=>{
+                        return <ExpenseDisplay key={expense.id}{...expense} />})}
+                    </div>
                 </div>
+
             </div>
     
         )

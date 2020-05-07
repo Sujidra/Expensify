@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import {startaddexpense} from "./store/Actions/expenseAction"
 const AddExpensePage = (props) =>(
     <div>
-        <p>this create page</p>
+        <p className="addsubhead">Add Expense</p>
         <ExpenseForm onSubmit={(expense)=>{props.dispatch(startaddexpense(expense))
         props.history.push("/")}}/>
     </div>
